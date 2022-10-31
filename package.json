@@ -26,6 +26,7 @@
     "contribute.json"
   ],
   "style": "bundle.css",
+  "engines": {"node": ">=16 <17"},
   "scripts": {
     "i18n": "matrix-gen-i18n",
     "prunei18n": "matrix-prune-i18n",
