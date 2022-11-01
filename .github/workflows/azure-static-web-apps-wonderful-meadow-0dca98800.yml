@@ -18,6 +18,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -31,6 +34,8 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "/webapp" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+        env:
+          VERSION: ${{ steps.package-version.outputs.current-version}}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
